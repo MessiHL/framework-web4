@@ -34,11 +34,6 @@ export const useAuthStore = defineStore({
       const { data } = await getAuthButtonListApi();
       this.authButtonList = data;
     },
-    // Get AuthMenuList
-    async getAuthMenuList() {
-      // const { data } = await getAuthMenuListApiBase();
-      // this.authMenuList = data;
-    },
     async initMenuList() {
       const { data } = await getAuthMenuListApi();
       this.originalMenuList = data;
@@ -49,10 +44,13 @@ export const useAuthStore = defineStore({
         this.activeCatalogMenuId = this.catalogMenuList[0].id;
       }
 
-      this.authMenuList = packageAuthMenuList(this.originalMenuList, this.activeCatalogMenuId);
-      const ddd = await getAuthMenuListApiBase();
-      console.log("this.authMenuList:", this.authMenuList);
-      console.log("data:", ddd.data);
+      const d1 = packageAuthMenuList(this.originalMenuList, this.activeCatalogMenuId);
+      const d2 = await getAuthMenuListApiBase();
+
+      console.log("d1:", d1);
+      console.log("d2.data:", d2.data);
+
+      this.authMenuList = d1; //d2.data;
     },
     // Set RouteName
     async setRouteName(name: string) {

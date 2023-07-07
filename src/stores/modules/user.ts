@@ -6,7 +6,7 @@ export const useUserStore = defineStore({
   id: "framework-user",
   state: (): UserState => ({
     token: "",
-    userInfo: { name: "framework" }
+    userInfo: {}
   }),
   getters: {},
   actions: {
@@ -17,6 +17,10 @@ export const useUserStore = defineStore({
     // Set setUserInfo
     setUserInfo(userInfo: UserState["userInfo"]) {
       this.userInfo = userInfo;
+    },
+    clearUserStore() {
+      this.token = "";
+      this.userInfo = {};
     }
   },
   persist: piniaPersistConfig("framework-user")

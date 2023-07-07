@@ -78,6 +78,8 @@ const tabsDrop = () => {
 
 // 初始化需要固定的 tabs
 const initTabs = () => {
+  console.log("initTabs :", authStore.flatMenuListGet);
+
   authStore.flatMenuListGet.forEach(item => {
     if (item.meta.isAffix && !item.meta.isHide && !item.meta.isFull) {
       const tabsParams = {

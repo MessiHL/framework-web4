@@ -44,6 +44,9 @@ export const useTabsStore = defineStore({
       this.tabsMenuList.forEach(item => {
         if (item.path == nowFullPath) item.title = title;
       });
+    },
+    clearTabsStore() {
+      this.tabsMenuList = [];
     }
   },
   persist: piniaPersistConfig("framework-tabs")

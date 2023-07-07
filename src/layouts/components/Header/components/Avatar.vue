@@ -29,12 +29,14 @@ import { LOGIN_URL } from "@/config";
 import { useRouter } from "vue-router";
 // import { logoutApi } from "@/api/modules/login";
 import { useUserStore } from "@/stores/modules/user";
+import { useTabsStore } from "@/stores/modules/tabs";
 import { ElMessageBox, ElMessage } from "element-plus";
 import InfoDialog from "./InfoDialog.vue";
 import PasswordDialog from "./PasswordDialog.vue";
 
 const router = useRouter();
 const userStore = useUserStore();
+const tabStore = useTabsStore();
 
 // 退出登录
 const logout = () => {
@@ -46,8 +48,9 @@ const logout = () => {
     // 1.执行退出登录接口
     // await logoutApi();
 
-    // 2.清除 Token
-    userStore.setToken("");
+    // 2.清除 Token、已打开页签
+    userStore.clearUserStore();
+    tabStore.clearTabsStore();
 
     // 3.重定向到登陆页
     router.replace(LOGIN_URL);

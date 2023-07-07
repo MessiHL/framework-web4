@@ -154,30 +154,30 @@ export function packageAuthMenuList(src: any[], id: string): Menu.MenuOptions[] 
 
   let newMenuList: Menu.MenuOptions[] = [
       {
-        component: "/home/index",
-        meat: { isAffix: true, isFull: false, isHide: false, isKeepAlive: false, isLink: "", title: "首页" },
+        path: "/home/index",
         name: "home",
-        path: "/home/index"
+        component: "/home/index",
+        meta: { icon: "", isAffix: true, isFull: false, isHide: false, isKeepAlive: false, isLink: "", title: "首页" }
       }
     ],
     pMenu: Menu.MenuOptions[] = [];
 
   const list: any[] = src.filter(x => x.id === id);
 
-  list[0]!.children!.forEach(m1 => {
+  list[0]!.children!.forEach((m1: any) => {
     pMenu = [];
     m1.children?.forEach((m2: any) => {
       pMenu.push(packageMenuItem(m2));
     });
 
     newMenuList.push({
-      name: m1.name,
       path: `${m1.disp_order}-${m1.id}`, // 父级菜单的path 用作唯一标识 。详见src\layouts\components\Menu\SubMenu.vue
+      name: m1.id,
       component: "",
       children: pMenu,
       meta: {
         icon: "",
-        isAffix: true,
+        isAffix: false,
         isFull: false,
         isHide: false,
         isKeepAlive: false,
@@ -192,12 +192,12 @@ export function packageAuthMenuList(src: any[], id: string): Menu.MenuOptions[] 
 
 function packageMenuItem(item: any) {
   let menu: Menu.MenuOptions = {
-    name: `${item.disp_order}-${item.id}-${item.parent_id}`, // 子菜单的 name用作唯一标识。详见 src\layouts\components\Menu\SubMenu.vue
-    path: "",
+    path: `${item.disp_order}-${item.id}-${item.parent_id}`, // 子菜单的 name用作唯一标识。详见 src\layouts\components\Menu\SubMenu.vue
+    name: `${item.id}-${item.parent_id}`,
     component: "",
     meta: {
       icon: "",
-      isAffix: true,
+      isAffix: false,
       isFull: false,
       isHide: false,
       isKeepAlive: false,

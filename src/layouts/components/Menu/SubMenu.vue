@@ -1,6 +1,6 @@
 <template>
-  <template v-for="(subItem, $index) in menuList" :key="subItem.path">
-    <el-sub-menu v-if="subItem.children?.length" :key="$index" :index="subItem.path">
+  <template v-for="subItem in menuList" :key="subItem.path">
+    <el-sub-menu v-if="subItem.children?.length" :index="subItem.name">
       <template #title>
         <el-icon>
           <component :is="subItem.meta.icon"></component>
@@ -10,9 +10,9 @@
       <SubMenu :menu-list="subItem.children" />
     </el-sub-menu>
     <el-menu-item v-else :index="subItem.name" @click="handleClickMenu(subItem)">
-      <!-- <el-icon>
+      <el-icon>
         <component :is="subItem.meta.icon"></component>
-      </el-icon> -->
+      </el-icon>
       <template #title>
         <span class="sle">{{ subItem.meta.title }}</span>
       </template>
@@ -36,9 +36,6 @@ const handleClickMenu = (subItem: Menu.MenuOptions) => {
 .el-sub-menu .el-sub-menu__title:hover {
   color: var(--el-menu-hover-text-color) !important;
   background-color: transparent !important;
-}
-.el-sub-menu .el-sub-menu__title {
-  height: 36px;
 }
 .el-menu--collapse {
   .is-active {

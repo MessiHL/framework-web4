@@ -25,8 +25,6 @@ import Fullscreen from "./components/Fullscreen.vue";
 import Avatar from "./components/Avatar.vue";
 
 const userStore = useUserStore();
-
-console.log("userStore.userInfo:", userStore.userInfo);
 const username = computed(() => `${userStore.userInfo.userName}   ${userStore.userInfo.busiYear}年`);
 </script>
 
